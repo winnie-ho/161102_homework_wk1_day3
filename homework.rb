@@ -20,7 +20,7 @@ puts lines[1]
 puts "---Q3---"
 puts lines[4]
 puts lines[-1]
-puts lines[2**2]
+puts lines.last
 
 
 # 4. Work out the index position of 'Haymarket'
@@ -31,11 +31,14 @@ puts lines.index ("Haymarket")
 # 5. Add 'Airport' to the start of the array
 puts "---Q5---" 
 puts lines.unshift "Airport"
+# lines.insert(0, "Airport")
 
 
 # 6. Add 'York Place' to the end of the array
 puts "---Q6---"
 puts lines << "York Place"
+#lines.push("York Place")
+#lines.insert(-1, "York Place")
 
 
 #7. Remove 'Edinburgh Park' from the array using it's name 
@@ -64,7 +67,7 @@ end
 
 puts "---Q10b---"
 counter = 0
-while counter<lines.length
+while counter<=lines.length
   puts lines [counter]
   counter+=1
 end
@@ -152,7 +155,15 @@ puts users ["Avril"][:pets][:sssteven]
 puts users ["Erik"][:favourite_numbers].min
 
 # 6. Return an array of Avril's favorite numbers that are even 
-# puts users ["Avril"][:favourite_numbers]%2==0
+even_numbers = users["Avril"][:favourite_numbers]
+for number in even_numbers
+  puts number if number%2 ==0
+end
+
+result = []
+for number in users ["Avril"][:favourite_numbers]
+  result << number if number.even?
+end
 
 # 7. Return an array of Jonathans favourite numbers, sorted in ascending order and excluding duplicates
 puts users ["Jonathan"][:favourite_numbers].uniq.sort!
@@ -167,10 +178,18 @@ users ["Erik"][:home_town]="Edinburgh"
 
 
 # 10. Add a pet dog to Erik called "Fluffy"
-users ["Erik"][:pets][:dog] = "Fluffy"
+users ["Erik"][:pets][:fluffy] = "dog"
 
 
 # 11. Add yourself to the users hash
-users ["Winnie"] = "new info"
+me = {
+  :twitter => "winster",
+  :favourite_numbers => [1, 4, 8, 80],
+  :home_town => "Edinburgh",
+  :pets => {
+    :Ryu => "fish"
+  }
+}
+users ["Winnie"] = me
 
-
+puts users
